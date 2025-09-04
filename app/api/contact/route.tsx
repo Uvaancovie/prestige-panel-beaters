@@ -1,7 +1,11 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Initialize Resend with a check for API key
+const resendApiKey = process.env.RESEND_API_KEY
+const resend = resendApiKey && resendApiKey !== 're_placeholder_key_for_build' 
+  ? new Resend(resendApiKey) 
+  : null
 
 export async function POST(request: NextRequest) {
   try {
@@ -41,6 +45,16 @@ export async function POST(request: NextRequest) {
         </div>
       </div>
     `
+
+    // Check if Resend is available
+    if (!resend) {
+      console.log("Resend API key not configured, skipping email sending")
+      return NextResponse.json({
+        success: true,
+        referenceNumber,
+        message: "Message received successfully (email disabled)",
+      })
+    }
 
     // Send email to business
     await resend.emails.send({
