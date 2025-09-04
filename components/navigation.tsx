@@ -34,10 +34,10 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold text-brand-black" style={{ fontFamily: "Oswald, sans-serif" }}>
+            <span className="text-2xl font-bold text-brand-blue" style={{ fontFamily: "Oswald, sans-serif" }}>
               PRESTIGE
             </span>
-            <span className="text-2xl font-bold text-brand-red ml-1" style={{ fontFamily: "Oswald, sans-serif" }}>
+            <span className="text-2xl font-bold text-brand-blue ml-1" style={{ fontFamily: "Oswald, sans-serif" }}>
               PANEL BEATERS
             </span>
           </Link>
